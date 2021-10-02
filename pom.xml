@@ -25,4 +25,7 @@
             <version>11.15</version>
         </dependency>
     </dependencies>
+    <build>
+        <defaultGoal>compile</defaultGoal>
+    </build>
 </project>
