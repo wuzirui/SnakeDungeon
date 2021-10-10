@@ -6,14 +6,11 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.input.Input;
-import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
@@ -29,9 +26,9 @@ public class SnakeDungeonGameApp extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
-        var pos = SnakeDungeonUtils.Coordinate2Piexel(MapInfo.mapWidth, MapInfo.mapHeight);
-        settings.setWidth(pos.getKey() + MapInfo.mapMargin);
-        settings.setHeight(pos.getValue() + MapInfo.mapMargin);
+        var pos = SnakeDungeonUtils.Coordinate2Pixel(MapInfo.mapWidth, MapInfo.mapHeight);
+        settings.setWidth(pos.getKey() + MapVisualize.mapMargin);
+        settings.setHeight(pos.getValue() + MapVisualize.mapMargin);
         settings.setTitle("Snake Dungeon");
         settings.setVersion("0.1.0");
     }
@@ -44,41 +41,45 @@ public class SnakeDungeonGameApp extends GameApplication {
         gameMap = new Entity[MapInfo.mapWidth][MapInfo.mapHeight];
         for (int i = 0; i != MapInfo.mapWidth; i++) {
             for (int j = 0; j != MapInfo.mapHeight; j++) {
-                var pos = SnakeDungeonUtils.Coordinate2Piexel(i, j);
-                gameMap[i][j] = FXGL.spawn("Block", new SpawnData(pos.getKey(), pos.getValue()));
+                var pos = SnakeDungeonUtils.Coordinate2Pixel(i, j);
+                gameMap[i][j] = FXGL.spawn("Block", new SpawnData(pos.getKey(), pos.getValue())
+                        .put("Type", MapInfo.getBlockType(i, j))
+                        .put("xPos", i)
+                        .put("yPos", j));
             }
         }
     }
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new SnakeDungeonFactory());
-        player = FXGL.entityBuilder()
-                .at(300, 300)
-                .view(new Rectangle(25, 25, Color.BLUE))
-                .buildAndAttach();
         initMap();
+        initSnake();
+    }
+
+    private void initSnake() {
+        int xpos = MapInfo.snakeStartXPos;
+        int ypos = MapInfo.snakeStartYPos;
+        placeSnakeBody(xpos, ypos);
+        var delta = SnakeDungeonUtils.getDelta(MapInfo.snakeStartDirection);
+        for (int i = 0; i != 2; i++) {
+            placeSnakeBody(xpos += delta.getKey(), ypos += delta.getValue());
+        }
+    }
+
+    private void placeSnakeBody(int xpos, int ypos) {
+        var pos = SnakeDungeonUtils.Coordinate2Pixel(xpos, ypos);
+
+        snakeBody = new LinkedList<Entity>();
+        snakeBody.addLast(
+                FXGL.spawn("SnakeBlock", new SpawnData(pos.getKey(), pos.getValue())
+                        .put("xPos", xpos)
+                        .put("yPos", ypos)
+        ));
     }
 
     @Override
     protected void initInput() {
         Input input = FXGL.getInput();
-
-        FXGL.onKey(KeyCode.W, () -> {
-            player.translateY(-5);
-            FXGL.inc("pixelsMoved", +5);
-        });
-        FXGL.onKey(KeyCode.A, () -> {
-            player.translateX(-5);
-            FXGL.inc("pixelsMoved", +5);
-        });
-        FXGL.onKey(KeyCode.S, () -> {
-            player.translateY(5);
-            FXGL.inc("pixelsMoved", +5);
-        });
-        FXGL.onKey(KeyCode.D, () -> {
-            player.translateX(5);
-            FXGL.inc("pixelsMoved", +5);
-        });
     }
 
     @Override
@@ -86,16 +87,10 @@ public class SnakeDungeonGameApp extends GameApplication {
         Text textPixels = new Text();
         textPixels.setTranslateX(50);
         textPixels.setTranslateY(100);
-
-        FXGL.getGameScene().addUINode(textPixels);
-
-        textPixels.setFont(Font.font("Consolas"));
-        textPixels.textProperty().bind(FXGL.getWorldProperties().intProperty("pixelsMoved").asString());
     }
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("pixelsMoved", 0);
     }
 
     public static void main(String[] args) {
