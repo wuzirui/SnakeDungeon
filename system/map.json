@@ -4,8 +4,8 @@
     "MapWidth": 25
   },
   "SnakeInfo": {
-    "StartXPos": 10,
-    "StartYPos": 10,
+    "StartXPos": 12,
+    "StartYPos": 13,
     "StartDirection": "UP"
   },
   "Blocks": [

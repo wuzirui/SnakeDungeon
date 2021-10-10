@@ -23,8 +23,8 @@ class MapInfoTest {
     void initMapSettings() {
         assertEquals(MapInfo.mapWidth, 25);
         assertEquals(MapInfo.mapHeight, 25);
-        assertEquals(MapInfo.snakeStartXPos, 10);
-        assertEquals(MapInfo.snakeStartYPos, 10);
+        assertEquals(MapInfo.snakeStartXPos, 12);
+        assertEquals(MapInfo.snakeStartYPos, 13);
     }
 
     @Test
