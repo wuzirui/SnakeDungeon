@@ -10,11 +10,6 @@ import javafx.scene.shape.Rectangle;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
 
 public class SnakeDungeonFactory implements EntityFactory {
-//    @Spawns("Snake")
-//    public Entity newSnake(SpawnData data) {
-//
-//    }
-
     @Spawns("Block")
     public Entity newPlainBlock(SpawnData data) {
         return entityBuilder(data)
