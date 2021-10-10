@@ -3,29 +3,35 @@ package org.tztyun.SnakeDungeon;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.dsl.components.view.TextViewComponent;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.entity.SpawnData;
-import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.input.Input;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.Deque;
 import java.util.Map;
-import java.util.Vector;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
 
 public class SnakeDungeonGameApp extends GameApplication {
+    public SnakeDungeonGameApp() {
+        try {
+            MapInfo.initMapSettings("system/map.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setWidth(800);
-        settings.setHeight(600);
+        var pos = SnakeDungeonUtils.Coordinate2Piexel(MapInfo.mapWidth, MapInfo.mapHeight);
+        settings.setWidth(pos.getKey() + MapInfo.mapMargin);
+        settings.setHeight(pos.getValue() + MapInfo.mapMargin);
         settings.setTitle("Snake Dungeon");
         settings.setVersion("0.1.0");
     }
@@ -35,9 +41,9 @@ public class SnakeDungeonGameApp extends GameApplication {
     private Entity[][] gameMap;
 
     private void initMap() {
-        gameMap = new Entity[Configures.mapWidth][Configures.mapHeight];
-        for (int i = 0; i != Configures.mapWidth; i++) {
-            for (int j = 0; j != Configures.mapHeight; j++) {
+        gameMap = new Entity[MapInfo.mapWidth][MapInfo.mapHeight];
+        for (int i = 0; i != MapInfo.mapWidth; i++) {
+            for (int j = 0; j != MapInfo.mapHeight; j++) {
                 var pos = SnakeDungeonUtils.Coordinate2Piexel(i, j);
                 gameMap[i][j] = FXGL.spawn("Block", new SpawnData(pos.getKey(), pos.getValue()));
             }

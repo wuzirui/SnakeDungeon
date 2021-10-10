@@ -18,10 +18,10 @@ public class SnakeDungeonFactory implements EntityFactory {
     @Spawns("Block")
     public Entity newPlainBlock(SpawnData data) {
         return entityBuilder(data)
-                .at(data.getX() + Configures.blockPadding, data.getY() + Configures.blockPadding)
+                .at(data.getX() + MapInfo.blockPadding, data.getY() + MapInfo.blockPadding)
                 .type(BlockType.Floor)
-                .view(new Rectangle(Configures.blockWidth - 2 * Configures.blockPadding
-                        , Configures.blockHeight - 2 * Configures.blockPadding, Color.gray(0.9)))
+                .view(new Rectangle(MapInfo.blockWidth - 2 * MapInfo.blockPadding ,
+                        MapInfo.blockHeight - 2 * MapInfo.blockPadding, Color.gray(0.9)))
                 .buildAndAttach();
     }
 }
