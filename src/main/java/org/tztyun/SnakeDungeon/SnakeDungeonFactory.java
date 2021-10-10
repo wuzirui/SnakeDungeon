@@ -22,6 +22,6 @@ public class SnakeDungeonFactory implements EntityFactory {
                 .type(BlockType.Floor)
                 .view(new Rectangle(MapInfo.blockWidth - 2 * MapInfo.blockPadding ,
                         MapInfo.blockHeight - 2 * MapInfo.blockPadding, Color.gray(0.9)))
-                .buildAndAttach();
+                .build();
     }
 }
