@@ -3,8 +3,10 @@ package org.tztyun.SnakeDungeon;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.dsl.components.view.TextViewComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.Input;
+import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.input.UserAction;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
@@ -12,7 +14,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.util.Deque;
 import java.util.Map;
+import java.util.Vector;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
 
 public class SnakeDungeonGameApp extends GameApplication {
 
@@ -25,13 +31,26 @@ public class SnakeDungeonGameApp extends GameApplication {
     }
 
     private Entity player;
+    private Deque<Entity> snakeBody;
+    private Entity[][] gameMap;
 
+    private void initMap() {
+        gameMap = new Entity[Configures.mapWidth][Configures.mapHeight];
+        for (int i = 0; i != Configures.mapWidth; i++) {
+            for (int j = 0; j != Configures.mapHeight; j++) {
+                var pos = SnakeDungeonUtils.Coordinate2Piexel(i, j);
+                gameMap[i][j] = FXGL.spawn("Block", new SpawnData(pos.getKey(), pos.getValue()));
+            }
+        }
+    }
     @Override
     protected void initGame() {
+        getGameWorld().addEntityFactory(new SnakeDungeonFactory());
         player = FXGL.entityBuilder()
                 .at(300, 300)
                 .view(new Rectangle(25, 25, Color.BLUE))
                 .buildAndAttach();
+        initMap();
     }
 
     @Override
