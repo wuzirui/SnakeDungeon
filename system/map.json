@@ -3,6 +3,11 @@
     "MapHeight": 25,
     "MapWidth": 25
   },
+  "SnakeInfo": {
+    "StartXPos": 10,
+    "StartYPos": 10,
+    "StartDirection": "UP"
+  },
   "Blocks": [
     ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
     ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
