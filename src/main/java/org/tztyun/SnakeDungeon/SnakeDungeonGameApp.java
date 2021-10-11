@@ -61,7 +61,7 @@ public class SnakeDungeonGameApp extends GameApplication {
         initSnake();
         System.out.println("Start timer");
         getGameTimer().runAtInterval(()->{
-            snakeForward();
+            snakeForward(curDirection);
         }, Duration.millis(300));
     }
 
@@ -86,11 +86,11 @@ public class SnakeDungeonGameApp extends GameApplication {
                 .put("yPos", ypos) );
     }
 
-    private void snakeForward() {
+    private void snakeForward(Direction direction) {
         var head = snakeBody.getFirst();
         var last = snakeBody.removeLast();
         getGameWorld().removeEntity(last);
-        var delta = SnakeDungeonUtils.getDelta(curDirection);
+        var delta = SnakeDungeonUtils.getDelta(direction);
         int xpos = head.getComponent(UnifiedBlockInfoComponent.class).getPosX() + delta.getKey();
         int ypos = head.getComponent(UnifiedBlockInfoComponent.class).getPosY() + delta.getValue();
 
@@ -101,6 +101,7 @@ public class SnakeDungeonGameApp extends GameApplication {
     @Override
     protected void initInput() {
         Input input = FXGL.getInput();
+
     }
 
     @Override
