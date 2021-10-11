@@ -27,6 +27,14 @@ public class SnakeDungeonFactory implements EntityFactory {
         return getBlockEntity(data, xpos, ypos, type);
     }
 
+    @Spawns("FoodBlock")
+    public Entity newFood(SpawnData data) {
+        int xpos = data.get("xPos");
+        int ypos = data.get("yPos");
+        var type = BlockType.Food;
+        return getBlockEntity(data, xpos, ypos, type);
+    }
+
     @NotNull
     private Entity getBlockEntity(SpawnData data, int xpos, int ypos, BlockType type) {
         var color = MapVisualize.blockColor.get(type);
