@@ -7,12 +7,15 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.input.Input;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+import org.tztyun.SnakeDungeon.Components.UnifiedBlockInfoComponent;
 
 import java.io.IOException;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Map;
 
+import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameTimer;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
 
 public class SnakeDungeonGameApp extends GameApplication {
@@ -36,6 +39,7 @@ public class SnakeDungeonGameApp extends GameApplication {
     private Entity player;
     private Deque<Entity> snakeBody;
     private Entity[][] gameMap;
+    private Direction curDirection;
 
     private void initMap() {
         gameMap = new Entity[MapInfo.mapWidth][MapInfo.mapHeight];
@@ -49,32 +53,49 @@ public class SnakeDungeonGameApp extends GameApplication {
             }
         }
     }
+
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new SnakeDungeonFactory());
         initMap();
         initSnake();
+        System.out.println("Start timer");
+        getGameTimer().runAtInterval(()->{
+            snakeForward();
+        }, Duration.millis(300));
     }
 
     private void initSnake() {
         int xpos = MapInfo.snakeStartXPos;
         int ypos = MapInfo.snakeStartYPos;
-        placeSnakeBody(xpos, ypos);
+        snakeBody = new LinkedList<Entity>();
+        snakeBody.addFirst(placeSnakeBody(xpos, ypos));
         var delta = SnakeDungeonUtils.getDelta(MapInfo.snakeStartDirection);
         for (int i = 0; i != 2; i++) {
-            placeSnakeBody(xpos += delta.getKey(), ypos += delta.getValue());
+            var newBlock = placeSnakeBody(xpos += delta.getKey(), ypos += delta.getValue());
+            snakeBody.addFirst(newBlock);
         }
+        curDirection = MapInfo.snakeStartDirection;
     }
 
-    private void placeSnakeBody(int xpos, int ypos) {
+    private Entity placeSnakeBody(int xpos, int ypos) {
         var pos = SnakeDungeonUtils.Coordinate2Pixel(xpos, ypos);
 
-        snakeBody = new LinkedList<Entity>();
-        snakeBody.addLast(
-                FXGL.spawn("SnakeBlock", new SpawnData(pos.getKey(), pos.getValue())
-                        .put("xPos", xpos)
-                        .put("yPos", ypos)
-        ));
+        return FXGL.spawn("SnakeBlock", new SpawnData(pos.getKey(), pos.getValue())
+                .put("xPos", xpos)
+                .put("yPos", ypos) );
+    }
+
+    private void snakeForward() {
+        var head = snakeBody.getFirst();
+        var last = snakeBody.removeLast();
+        getGameWorld().removeEntity(last);
+        var delta = SnakeDungeonUtils.getDelta(curDirection);
+        int xpos = head.getComponent(UnifiedBlockInfoComponent.class).getPosX() + delta.getKey();
+        int ypos = head.getComponent(UnifiedBlockInfoComponent.class).getPosY() + delta.getValue();
+
+        var newBlock = placeSnakeBody(xpos, ypos);
+        snakeBody.addFirst(newBlock);
     }
 
     @Override
