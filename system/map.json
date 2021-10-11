@@ -1,0 +1,38 @@
+{
+  "BasicInfo": {
+    "MapHeight": 25,
+    "MapWidth": 25
+  },
+  "SnakeInfo": {
+    "StartXPos": 12,
+    "StartYPos": 13,
+    "StartDirection": "UP"
+  },
+  "Blocks": [
+    ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Floor", "Wall"],
+    ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"]
+  ]
+}
